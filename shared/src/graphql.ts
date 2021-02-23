@@ -13,48 +13,37 @@ export type Scalars = {
   Float: number;
 };
 
-export type TransactionSplit = {
-  __typename?: 'TransactionSplit';
-  id: Scalars['ID'];
-  transactionId: Scalars['Int'];
-  date: Scalars['String'];
-  accountName: Scalars['String'];
-  accountNameLabel: Scalars['String'];
-  shop?: Maybe<Scalars['String']>;
-  value: Scalars['Int'];
-  description?: Maybe<Scalars['String']>;
+export type RequestTokenResult = {
+  __typename?: 'RequestTokenResult';
+  count: Scalars['Int'];
+  token: Scalars['String'];
+  timestamp: Scalars['Int'];
 };
 
-export type TransactionSplitQuery = {
-  __typename?: 'TransactionSplitQuery';
-  list: Array<Maybe<TransactionSplit>>;
-  listSameAccountNameLabelById: Array<Maybe<TransactionSplit>>;
+export type AccessCounterQuery = {
+  __typename?: 'AccessCounterQuery';
+  requestToken?: Maybe<RequestTokenResult>;
+};
+
+export type AccessCounterMutation = {
+  __typename?: 'AccessCounterMutation';
+  requestIncrement: Scalars['Boolean'];
 };
 
 
-export type TransactionSplitQueryListSameAccountNameLabelByIdArgs = {
-  id?: Maybe<Scalars['Int']>;
+export type AccessCounterMutationRequestIncrementArgs = {
+  token: Scalars['String'];
+  timestamp: Scalars['Int'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  helloQ?: Maybe<Scalars['String']>;
-  transactionSplits: TransactionSplitQuery;
-};
-
-
-export type QueryHelloQArgs = {
-  name?: Maybe<Scalars['String']>;
+  accessCounter?: Maybe<AccessCounterQuery>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  helloM?: Maybe<Scalars['String']>;
-};
-
-
-export type MutationHelloMArgs = {
-  name?: Maybe<Scalars['String']>;
+  accessCounter?: Maybe<AccessCounterMutation>;
 };
 
 
@@ -135,58 +124,57 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  TransactionSplit: ResolverTypeWrapper<TransactionSplit>;
-  ID: ResolverTypeWrapper<Scalars['ID']>;
+  RequestTokenResult: ResolverTypeWrapper<RequestTokenResult>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   String: ResolverTypeWrapper<Scalars['String']>;
-  TransactionSplitQuery: ResolverTypeWrapper<TransactionSplitQuery>;
+  AccessCounterQuery: ResolverTypeWrapper<AccessCounterQuery>;
+  AccessCounterMutation: ResolverTypeWrapper<AccessCounterMutation>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Query: ResolverTypeWrapper<{}>;
   Mutation: ResolverTypeWrapper<{}>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  TransactionSplit: TransactionSplit;
-  ID: Scalars['ID'];
+  RequestTokenResult: RequestTokenResult;
   Int: Scalars['Int'];
   String: Scalars['String'];
-  TransactionSplitQuery: TransactionSplitQuery;
+  AccessCounterQuery: AccessCounterQuery;
+  AccessCounterMutation: AccessCounterMutation;
+  Boolean: Scalars['Boolean'];
   Query: {};
   Mutation: {};
-  Boolean: Scalars['Boolean'];
 };
 
-export type TransactionSplitResolvers<ContextType = any, ParentType extends ResolversParentTypes['TransactionSplit'] = ResolversParentTypes['TransactionSplit']> = {
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  transactionId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  date?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  accountName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  accountNameLabel?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  shop?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  value?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+export type RequestTokenResultResolvers<ContextType = any, ParentType extends ResolversParentTypes['RequestTokenResult'] = ResolversParentTypes['RequestTokenResult']> = {
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  timestamp?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type TransactionSplitQueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['TransactionSplitQuery'] = ResolversParentTypes['TransactionSplitQuery']> = {
-  list?: Resolver<Array<Maybe<ResolversTypes['TransactionSplit']>>, ParentType, ContextType>;
-  listSameAccountNameLabelById?: Resolver<Array<Maybe<ResolversTypes['TransactionSplit']>>, ParentType, ContextType, RequireFields<TransactionSplitQueryListSameAccountNameLabelByIdArgs, never>>;
+export type AccessCounterQueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['AccessCounterQuery'] = ResolversParentTypes['AccessCounterQuery']> = {
+  requestToken?: Resolver<Maybe<ResolversTypes['RequestTokenResult']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type AccessCounterMutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['AccessCounterMutation'] = ResolversParentTypes['AccessCounterMutation']> = {
+  requestIncrement?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<AccessCounterMutationRequestIncrementArgs, 'token' | 'timestamp'>>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  helloQ?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<QueryHelloQArgs, never>>;
-  transactionSplits?: Resolver<ResolversTypes['TransactionSplitQuery'], ParentType, ContextType>;
+  accessCounter?: Resolver<Maybe<ResolversTypes['AccessCounterQuery']>, ParentType, ContextType>;
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  helloM?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationHelloMArgs, never>>;
+  accessCounter?: Resolver<Maybe<ResolversTypes['AccessCounterMutation']>, ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
-  TransactionSplit?: TransactionSplitResolvers<ContextType>;
-  TransactionSplitQuery?: TransactionSplitQueryResolvers<ContextType>;
+  RequestTokenResult?: RequestTokenResultResolvers<ContextType>;
+  AccessCounterQuery?: AccessCounterQueryResolvers<ContextType>;
+  AccessCounterMutation?: AccessCounterMutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
 };

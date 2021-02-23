@@ -1,15 +1,15 @@
+type RequestTokenResult {
+  count: Int!
+  token: String!
+  timestamp: Int!
+}
+
 type AccessCounterQuery {
-  requestToken: {
-    count: Int!
-    token: String!
-    timestamp: Int!
-  }
+  requestToken: RequestTokenResult
 }
 
 type AccessCounterMutation {
-  requestIncrement(token: String!, timestamp: Int!) {
-
-  }
+  requestIncrement(token: String!, timestamp: Int!): Boolean!
 }
 
 type Query {
