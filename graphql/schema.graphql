@@ -1,0 +1,26 @@
+type AccessCounterQuery {
+  requestToken: {
+    count: Int!
+    token: String!
+    timestamp: Int!
+  }
+}
+
+type AccessCounterMutation {
+  requestIncrement(token: String!, timestamp: Int!) {
+
+  }
+}
+
+type Query {
+  accessCounter: AccessCounterQuery
+}
+
+type Mutation {
+  accessCounter: AccessCounterMutation
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

@@ -1,0 +1,43 @@
+.transaction-splits-table {
+  font-size: 18px;
+  border-collapse: collapse;
+  color: #F4F5F4;
+
+  a {
+    text-decoration: underline;
+    color: #EEC752;
+  }
+
+  // thead {
+  //   th {
+  //     background-color: #EEC752;
+  //     color: #323A81;
+  //   }
+  // }
+
+  td, th {
+    padding: 0.6em 1.2em 8px;
+    border-bottom: solid 1px #F4F5F4;
+  }
+
+  &__right-align-cell {
+      text-align: right;
+  }
+
+  %__left-align-cell {
+    text-align: left;
+  }
+
+  &__left-align-cell {
+    @extend %__left-align-cell;
+
+    &--selected {
+      @extend %__left-align-cell;
+      background-color: #EEC752;
+      color: #323A81;
+      a {
+        color: #323A81;
+      }
+    }
+  }
+}
